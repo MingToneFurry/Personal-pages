@@ -12,8 +12,7 @@ import GlassCard from '../components/GlassCard.vue'
       </div>
 
       <GlassCard class="note">
-        <div class="note-title">联系方式 / 入口</div>
-        <div class="note-body muted">每个 link 都可以单独配置图标：在 config 里给 link 填 <code>iconUrl</code> 即可，不填就用默认图标～</div>
+        <div class="note-title">联系方式</div>
       </GlassCard>
 
       <div class="grid">

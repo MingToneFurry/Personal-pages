@@ -41,7 +41,7 @@ export const siteConfig = {
 
   hero: {
     title: '你好，我是 MingTone',
-    tagline: 'furry / web / Cloudflare 折腾玩家'
+    tagline: 'furry / web / Cloudflare探索者'
   },
 
   background: {
@@ -61,7 +61,7 @@ export const siteConfig = {
      * - blurPx：模糊强度（越小越清晰）
      * - saturate / contrast：色彩饱和度 / 对比度（轻微即可）
      */
-    blurPx: 12,
+    blurPx: 6,
     saturate: 1.12,
     contrast: 1.05
   },
@@ -78,17 +78,17 @@ export const siteConfig = {
     {
       label: '博客',
       url: 'https://blog.furry.ist/',
-      desc: 'MingTone 的小站'
+      desc: 'MingTone 滴小站'
     },
     {
       label: 'FurryAPI',
       url: 'https://api.furry.ist/',
-      desc: 'API 主站 / 接口能力'
+      desc: 'API 主站'
     },
     {
       label: 'API 背景接口',
       url: 'https://api.furry.ist/furry-img',
-      desc: '刷新就有新图'
+      desc: '来点毛毛！'
     }
   ] satisfies LinkItem[],
 
@@ -97,19 +97,19 @@ export const siteConfig = {
       {
         title: '关于我',
         body:
-          '喜欢折腾网站和基础设施，常驻 Cloudflare 系（Workers / Pages / R2 之类）。目标是做出中国 furry 圈子内最大的约稿、票务、聊天、返图、交友平台。'
+          '喜欢折腾网站和基础设施，常驻 X tg'
       },
       {
         title: '我在做什么',
-        body: '把可用性、稳定性和“好看”放在同一个优先级里。'
+        body: '逐梦'
       }
     ]
   },
 
   projects: [
     {
-      name: 'FurryAPI',
-      desc: '面向中国 furry 圈子的 API 服务与基础设施。',
+      name: 'FurryAPI'
+      desc: '面向中国 furry 圈子的 API 服务',
       tags: ['API', 'Infra'],
       status: 'active',
       links: [
@@ -118,8 +118,8 @@ export const siteConfig = {
       ]
     },
     {
-      name: 'MingTone 小站',
-      desc: '博客 / 笔记 / 折腾记录。',
+      name: 'MingTone滴小站',
+      desc: '我的博客，一个小透明的个人空间',
       tags: ['Web', 'Blog'],
       status: 'active',
       links: [{ label: 'Open', url: 'https://blog.furry.ist/' }]
@@ -129,7 +129,7 @@ export const siteConfig = {
       desc: '约稿、票务、聊天、返图、交友一体化。',
       tags: ['Product', 'Community'],
       status: 'planned',
-      links: [{ label: 'Idea', url: 'https://blog.furry.ist/' }]
+      links: [{ label: 'Idea', url: 'https://furryrealm.com/' }]
     }
   ] satisfies ProjectItem[],
 
@@ -140,11 +140,11 @@ export const siteConfig = {
     },
     {
       title: 'Cloudflare 新玩法整合',
-      desc: '把缓存、鉴权、边缘计算组合得更顺滑'
+      desc: '把缓存、边缘计算组合得更顺滑'
     },
     {
       title: '监控与稳定性',
-      desc: '更直观的状态反馈、更稳的 SLA'
+      desc: '更直观的状态反馈、更稳的 SLA （存疑）'
     }
   ] satisfies PlanItem[],
 
@@ -187,6 +187,6 @@ export const siteConfig = {
   ] satisfies LinkItem[],
 
   footer: {
-    text: '© {year} MingTone · Mint Glass'
+    text: '© {year} MingTone · Furry！'
   }
 }

@@ -61,8 +61,8 @@ const featuredProjects = computed(() => siteConfig.projects.slice(0, 3))
             <IconRocket />
           </div>
           <div>
-            <div class="plan-title">下一步要做的事</div>
-            <div class="plan-desc muted">薄荷色主色调 + 玻璃拟态，慢慢打磨成你自己的风格</div>
+            <div class="plan-title">Next Todo</div>
+            <div class="plan-desc muted">学习vue！</div>
           </div>
         </div>
 
