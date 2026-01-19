@@ -108,7 +108,7 @@ export const siteConfig = {
 
   projects: [
     {
-      name: 'FurryAPI'
+      name: 'FurryAPI',
       desc: '面向中国 furry 圈子的 API 服务',
       tags: ['API', 'Infra'],
       status: 'active',
