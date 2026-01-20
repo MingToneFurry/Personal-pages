@@ -190,14 +190,9 @@ export const siteConfig = {
 
   contactLinks: [
     {
-      label: '博客',
-      url: 'https://blog.furry.ist/',
+      label: '博客 - contact',
+      url: 'https://blog.furry.ist/contact/',
       desc: 'blog.furry.ist'
-    },
-    {
-      label: 'API',
-      url: 'https://api.furry.ist/',
-      desc: 'api.furry.ist'
     }
   ] satisfies LinkItem[],
 
