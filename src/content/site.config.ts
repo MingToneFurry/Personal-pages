@@ -1,3 +1,5 @@
+import { buildGalleryFromAssets } from './gallery.auto'
+
 export type NavItem = {
   label: string
   to: string
@@ -34,6 +36,28 @@ export type GalleryItem = {
   group?: string
 }
 
+// ===== Gallery: 自动从仓库内图片生成（你只需要把图片丢进目录即可） =====
+// 放图位置：src/assets/gallery/<group>/xxx.jpg
+// - group 会自动从第一层目录名生成（例如 events / suits / art）
+// - 目录为空时会回退到占位图（你也可以删掉占位图）
+const autoGallery = buildGalleryFromAssets({
+  groupUseFullPath: false,
+  rootGroupName: 'All'
+})
+
+const hasLocalGallery = autoGallery.items.length > 0
+
+const fallbackGalleryItems: GalleryItem[] = [
+  {
+    title: '占位图',
+    src: 'https://api.furry.ist/furry-img',
+    group: 'All'
+  }
+]
+
+const galleryItems: GalleryItem[] = hasLocalGallery ? autoGallery.items : fallbackGalleryItems
+const galleryGroups: string[] = hasLocalGallery ? autoGallery.groups : ['All']
+
 export const siteConfig = {
   siteTitle: 'MingTone',
 
@@ -61,7 +85,7 @@ export const siteConfig = {
      * - blurPx：模糊强度（越小越清晰）
      * - saturate / contrast：色彩饱和度 / 对比度（轻微即可）
      */
-    blurPx: 6,
+    blurPx: 3,
     saturate: 1.12,
     contrast: 1.05
   },
@@ -96,8 +120,7 @@ export const siteConfig = {
     blocks: [
       {
         title: '关于我',
-        body:
-          '喜欢折腾网站和基础设施，常驻 X tg'
+        body: '喜欢折腾网站和基础设施，常驻 X tg'
       },
       {
         title: '我在做什么',
@@ -135,8 +158,8 @@ export const siteConfig = {
 
   plans: [
     {
-      title: '中国 furry 圈最大综合平台',
-      desc: '约稿、票务、聊天、返图、交友一体化'
+      title: 'furry api功能增加',
+      desc: '增加更多适合furry们的api功能！'
     },
     {
       title: 'Cloudflare 新玩法整合',
@@ -150,27 +173,19 @@ export const siteConfig = {
 
   gallery: {
     /**
-     * 图集是可选的：你可以把 src 换成你自己的直链。
-     * 这里先给一些占位，方便你确认布局是否喜欢。
+     * mode = 'assets-auto'：从 src/assets/gallery 自动收集
+     * mode = 'placeholder'：目录为空时回退
      */
-    items: [
-      {
-        title: '占位图 1',
-        src: 'https://api.furry.ist/furry-img',
-        group: 'All'
-      },
-      {
-        title: '占位图 2',
-        src: 'https://api.furry.ist/furry-img',
-        group: 'All'
-      },
-      {
-        title: '占位图 3',
-        src: 'https://api.furry.ist/furry-img',
-        group: 'All'
-      }
-    ] satisfies GalleryItem[],
-    groups: ['All']
+    mode: hasLocalGallery ? 'assets-auto' : 'placeholder',
+
+    /**
+     * 一次渲染/追加多少张（图片非常多时建议 24~60 之间）
+     * - 会配合“滚动到底自动加载更多”减少一次性 DOM 数量
+     */
+    pageSize: 36,
+
+    items: galleryItems,
+    groups: galleryGroups
   },
 
   contactLinks: [

@@ -62,7 +62,7 @@ const featuredProjects = computed(() => siteConfig.projects.slice(0, 3))
           </div>
           <div>
             <div class="plan-title">Next Todo</div>
-            <div class="plan-desc muted">学习vue！</div>
+            <div class="plan-desc muted">下面的事正在计划中~</div>
           </div>
         </div>
 
