@@ -77,7 +77,7 @@ export const siteConfig = {
   seo: {
     // 你的站点主域名（建议填写最终线上地址）
     siteUrl: 'https://www.furry.ist',
-    description: 'MingTone 的个人主页：furry / web / Cloudflare 探索者。',
+    description: 'MingTone 的个人主页',
     keywords: ['MingTone', 'furry', '福瑞', 'web', 'Cloudflare', '个人主页'],
     ogImage: 'https://q.qlogo.cn/headimg_dl?dst_uin=2244347713&spec=5',
     author: 'MingTone'
