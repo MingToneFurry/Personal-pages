@@ -36,6 +36,19 @@ export type GalleryItem = {
   group?: string
 }
 
+export type SeoConfig = {
+  /** 站点对外的基础 URL（用于 canonical / og:url 等） */
+  siteUrl: string
+  /** 全站默认 description */
+  description: string
+  /** 全站默认 keywords */
+  keywords: string[]
+  /** 社交分享图（OpenGraph / Twitter） */
+  ogImage?: string
+  /** 可选：作者 */
+  author?: string
+}
+
 // ===== Gallery: 自动从仓库内图片生成（你只需要把图片丢进目录即可） =====
 // 放图位置：src/assets/gallery/<group>/xxx.jpg
 // - group 会自动从第一层目录名生成（例如 events / suits / art）
@@ -60,6 +73,15 @@ const galleryGroups: string[] = hasLocalGallery ? autoGallery.groups : ['All']
 
 export const siteConfig = {
   siteTitle: 'MingTone',
+
+  seo: {
+    // 你的站点主域名（建议填写最终线上地址）
+    siteUrl: 'https://www.furry.ist',
+    description: 'MingTone 的个人主页：furry / web / Cloudflare 探索者。',
+    keywords: ['MingTone', 'furry', '福瑞', 'web', 'Cloudflare', '个人主页'],
+    ogImage: 'https://q.qlogo.cn/headimg_dl?dst_uin=2244347713&spec=5',
+    author: 'MingTone'
+  } satisfies SeoConfig,
 
   avatarUrl: 'https://q.qlogo.cn/headimg_dl?dst_uin=2244347713&spec=5',
 
@@ -197,6 +219,6 @@ export const siteConfig = {
   ] satisfies LinkItem[],
 
   footer: {
-    text: '© {year} MingTone · Furry！'
+    text: '© 2024 - {year} MingTone · Furry！'
   }
 }

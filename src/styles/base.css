@@ -82,11 +82,15 @@ a:hover {
 
 #app {
   min-height: 100vh;
+  /* 移动端地址栏收起/展开时，vh 可能变化导致视觉“抽动”，svh 更稳定 */
+  min-height: 100svh;
 }
 
 /* Layout */
 .app-root {
   min-height: 100vh;
+  /* 同上：尽量用稳定视口高度，减少底部回弹时抖动 */
+  min-height: 100svh;
   position: relative;
 }
 

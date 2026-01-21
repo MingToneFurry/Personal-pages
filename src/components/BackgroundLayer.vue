@@ -105,9 +105,19 @@ onMounted(() => {
 .bg-root {
   position: fixed;
   inset: 0;
+  /* 明确使用视口单位：在移动端地址栏收起/展开时减少重排导致的“抽动” */
+  width: 100vw;
+  height: 100vh;
+  height: 100svh;
   z-index: 0;
   overflow: hidden;
   pointer-events: none;
+
+  /* iOS/移动端滚动到边缘时，固定层 + 大图 + filter 可能出现抖动：
+     强制独立合成层可明显缓解 */
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
 }
 
 .bg-img {
@@ -116,7 +126,9 @@ onMounted(() => {
   width: 120%;
   height: 120%;
   object-fit: cover;
-  transform: scale(1.02);
+  transform: translateZ(0) scale(1.02);
+  will-change: transform, opacity, filter;
+  backface-visibility: hidden;
 
   /* 模糊强度由配置控制 */
   filter: blur(var(--bg-blur)) saturate(var(--bg-saturate)) contrast(var(--bg-contrast));
