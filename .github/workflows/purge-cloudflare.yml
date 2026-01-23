@@ -1,0 +1,51 @@
+name: Purge Cloudflare Cache
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  purge-cache:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Setup Node modules
+        run: |
+          npm ci
+
+      - name: Build site
+        run: |
+          npm run build
+
+      - name: Collect build output URLs
+        id: collect
+        run: |
+          BASE="https://www.furry.ist"
+          urls=()
+          urls+=("$BASE/")
+          urls+=("$BASE/index.html")
+          while IFS= read -r -d '' file; do
+            rel=${file#dist/}
+            urls+=("$BASE/$rel")
+          done < <(find dist -type f -print0)
+          json=$(printf "%s\n" "${urls[@]}" | jq -R -s -c 'split("\n")[:-1]')
+          echo "purge_urls=$json" >> $GITHUB_OUTPUT
+
+      - name: Run Cloudflare purge script
+        env:
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CF_ZONE_ID: ${{ secrets.CF_ZONE_ID }}
+          BASE_URL: https://www.furry.ist
+          PURGE_URLS: ${{ steps.collect.outputs.purge_urls }}
+        run: |
+          node scripts/purge-cloudflare.js
